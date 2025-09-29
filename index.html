@@ -1,0 +1,139 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Alliance Production — Full screen</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --topbar: #2f3133;
+    --cta: #3577de;
+    --muted: #bfc7cb;
+    --accent: #2b8be6;
+    --header-h: 64px;
+    --left-col: 220px;
+    --right-col: 340px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0; font-family:"Noto Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased;}
+
+  /* Шапка во всю ширину */
+  header.header {
+    width:100%;
+    height:var(--header-h);
+    background:var(--topbar);
+    display:grid;
+    grid-template-columns: var(--left-col) 1fr var(--right-col);
+    align-items:center;
+    position:fixed; /* остаётся сверху при скролле */
+    top:0; left:0;
+    z-index:1000;
+    padding:0;
+  }
+
+  /* Левый логотип */
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding-left:20px;
+  }
+  .logo-badge{
+    width:42px; height:42px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:700; font-size:14px;
+    background: linear-gradient(135deg,var(--accent),#1f6fbf);
+  }
+  .logo-title{ color:#fff; font-weight:700; font-size:13px; line-height:1; }
+  .logo-sub{ color:var(--muted); font-size:10px; margin-top:2px; }
+
+  /* Центр - меню ровно по центру колонки */
+  .center{ display:flex; justify-content:center; align-items:center; }
+  nav.main-nav{ display:flex; gap:30px; }
+  nav.main-nav a{ color:#d6d6d6; text-decoration:none; font-size:14px; white-space:nowrap; padding:6px 2px; }
+  nav.main-nav a:hover{ color:#fff; }
+
+  /* Правая колонка — телефон и CTA (CTA занимает всю высоту хедера) */
+  .right{ display:flex; align-items:stretch; justify-content:flex-end; }
+  .phone-area{ display:flex; align-items:center; gap:12px; padding:0 18px; color:var(--muted); white-space:nowrap; font-size:14px; }
+  .phone-area svg{ width:18px; height:18px; opacity:0.95; }
+  .cta{ display:inline-flex; align-items:center; justify-content:center; min-width:240px; padding:0 24px; background:var(--cta); color:#fff; font-weight:600; text-decoration:none; border-left:1px solid rgba(255,255,255,0.06); cursor:pointer; }
+
+  /* Основной блок: заполнить оставшуюся высоту (под шапкой) */
+  .main {
+    min-height: calc(100vh - var(--header-h));
+    padding-top: var(--header-h); /* чтобы контент не уехал под фиксированную шапку */
+    background: #fff;
+    display:flex;
+    justify-content:center; /* если хочешь центрировать внутреннюю 'панель' */
+    align-items:flex-start;
+  }
+
+  /* Внутренняя "панель" (по желанию можно растянуть на 100% ширины) */
+  .page-inner{
+    width:100%;
+    max-width:1300px; /* если хочешь ограничить ширину контента, меняй это; для полноэкранного убери max-width */
+    min-height:480px;
+    background: #fff;
+    border-radius:8px; /* если не нужен — убери */
+    margin:30px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.03);
+  }
+
+  /* Мобильная адаптация */
+  @media (max-width:1100px){
+    :root{ --left-col:160px; --right-col:220px; }
+    nav.main-nav{ gap:18px; font-size:13px; }
+  }
+  @media (max-width:800px){
+    nav.main-nav{ display:none; } /* прячем меню на маленьких экранах */
+  }
+</style>
+</head>
+<body>
+
+  <!-- Шапка — во всю ширину окна -->
+  <header class="header" role="banner">
+    <div class="logo" aria-hidden="true">
+      <div class="logo-badge">AP</div>
+      <div>
+        <div class="logo-title">ALLIANCE</div>
+        <div class="logo-sub">PRODUCTION</div>
+      </div>
+    </div>
+
+    <div class="center">
+      <nav class="main-nav" role="navigation" aria-label="Главное меню">
+        <a href="#">О компании</a>
+        <a href="#">Контрактное производство</a>
+        <a href="#">Собственные торговые марки</a>
+        <a href="#">Новости</a>
+        <a href="#">Контакты</a>
+      </nav>
+    </div>
+
+<div class="right" role="group" aria-label="Контакты">
+      <div class="phone-area">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 01.95-.27c1.04.26 2.17.4 3.33.4a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.16.14 2.29.4 3.33a1 1 0 01-.27.95l-2.01 2.51z" fill="#bfc7cb"/></svg>
+        <div class="phone-number">+7 (499) 686-10-14</div>
+      </div>
+
+      <a class="cta" href="#" role="button">Получить консультацию</a>
+    </div>
+  </header>
+
+  <!-- Основной контент (во всю ширину, под шапкой) -->
+  <section class="main" role="main">
+    <div class="page-inner">
+      <!-- Тут будет содержимое страницы — сейчас пусто, как у тебя на скрине -->
+    </div>
+  </section>
+
+</body>
+</html>
